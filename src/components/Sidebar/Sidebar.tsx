@@ -3,6 +3,9 @@ import { Menu } from 'antd';
 import { MenuOutlined, FacebookOutlined, InstagramOutlined, YoutubeOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
 import logo from '../../assets/images/logo.png'
+import { Link, useNavigate } from 'react-router-dom';
+import TabMenu from '../../page/TabMenu/TabMenu';
+
 
 // Container cho sidebar
 const SidebarContainer = styled.div`
@@ -13,11 +16,12 @@ const SidebarContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  font-family: 'Roboto', sans-serif; /* Thay đổi font chữ ở đây */
 `;
 
 // Menu style cho các mục trong sidebar
 const StyledMenu = styled(Menu)`
-  background-color:rgba(37, 158, 88, 1);
+  background-color: rgba(37, 158, 88, 1);
   color: white;
   border-right: none;
   font-size: 18px;
@@ -27,10 +31,27 @@ const StyledMenu = styled(Menu)`
     display: flex;
     align-items: center;
     justify-content: start;
+    position: relative;
+    font-family: 'Roboto', sans-serif; /* Thay đổi font chữ ở đây */
+    color: #ffffff; /* Màu font chữ */
   }
 
   & .ant-menu-item-selected {
     background-color: rgba(37, 158, 88, 1) !important; /* Màu của mục được chọn */
+  }
+
+  & .ant-menu-item-selected::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 80%;
+    height: 4px;
+    background-color: rgba(1, 112, 61, 1); /* Màu của dấu gạch chân */
+  }
+
+    & .ant-menu-item:hover {
+    color: rgba(1, 112, 61, 1) !important; /* Màu nền khi hover */
   }
 `;
 
@@ -40,7 +61,7 @@ const MenuIconWrapper = styled.div`
   align-items: center;
   justify-content: center;
   height: 80px;
-  background-color: #F06292; /* Màu hồng cho icon */
+  background-color: white; /* Màu hồng cho icon */
   border-radius: 50%;
   margin: 10px auto;
   width: 60px;
@@ -70,22 +91,27 @@ const Logo = styled.img`
   margin-bottom: -240px;
 `;
 
+
 const Sidebar: React.FC = () => {
+  const navigate = useNavigate()
+  const TabMenu = () => {
+    navigate('/TabMenu')
+  }
   return (
     <SidebarContainer>
       {/* Menu Icon */}
       <MenuIconWrapper>
-        <MenuOutlined style={{ fontSize: '28px', color: 'white' }} />
+        <MenuOutlined onClick={TabMenu} style={{ fontSize: '28px', color: '#F06292' }}  />
       </MenuIconWrapper>
 
     
       {/* Menu các mục trong sidebar */}
-      <StyledMenu mode="vertical" defaultSelectedKeys={['1']} style={{marginTop:"-100px"}}>
-        <Menu.Item key="1" style={{color:'white', fontWeight:'900', fontFamily: 'Instant', fontSize: '20px'}}>TRANG CHỦ</Menu.Item>
-        <Menu.Item key="2" style={{color:'white', fontWeight:'900', fontFamily: 'Instant'}}>KHÁM PHÁ</Menu.Item>
-        <Menu.Item key="3" style={{color:'white', fontWeight:'900', fontFamily: 'Instant'}}>GIỚI THIỆU</Menu.Item>
-        <Menu.Item key="4" style={{color:'white', fontWeight:'900', fontFamily: 'Instant'}}>GIÁ VÉ</Menu.Item>
-        <Menu.Item key="5" style={{color:'white', fontWeight:'900', fontFamily: 'Instant'}}>SỰ KIỆN</Menu.Item>
+      <StyledMenu mode="vertical" defaultSelectedKeys={['1']} style={{marginTop:"-160px"}}>
+        <Menu.Item key="1" style={{color:'white', fontWeight:'800', fontSize: '20px'}}><Link to="/">TRANG CHỦ</Link></Menu.Item>
+        <Menu.Item key="2" style={{color:'white', fontWeight:'900', fontSize: '20px'}}><Link to="/explore">KHÁM PHÁ</Link></Menu.Item>
+        <Menu.Item key="3" style={{color:'white', fontWeight:'900', fontSize: '20px'}}>GIỚI THIỆU</Menu.Item>
+        <Menu.Item key="4" style={{color:'white', fontWeight:'900', fontSize: '20px'}}>GIÁ VÉ</Menu.Item>
+        <Menu.Item key="5" style={{color:'white', fontWeight:'900', fontSize: '20px'}}>SỰ KIỆN</Menu.Item>
       </StyledMenu>
 
         {/* Logo */}

@@ -6,9 +6,9 @@ import { LeftOutlined, RightOutlined, PhoneOutlined, MessageOutlined } from '@an
 
 // Wrapper cho toàn bộ content
 const ContentWrapper = styled.div`
-  margin-left: 256px; /* Đảm bảo không đè lên sidebar */
-  width: calc(100% - 256px);
+  margin-left: 20px; /* Đảm bảo không đè lên sidebar */
   height: 100vh;
+  width: 98%;
   position: relative;
   background-color: #f5f5f5;
 `;
@@ -22,6 +22,7 @@ const CarouselContainer = styled(Carousel)`
 const CarouselItem = styled.div`
   position: relative;
   height: 100%;
+  margin-top: 10px;
 `;
 
 const Image = styled.img`
@@ -43,7 +44,7 @@ const CTAButton = styled.button`
   padding: 15px 30px;
   font-size: 18px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.1s;
   font-weight: 600;
 
   &:hover {
@@ -93,7 +94,7 @@ const ContactIcon = styled.div`
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background-color: #388e3c;
+  background-color: White;//#388e3c
   display: flex;
   justify-content: center;
   align-items: center;
@@ -103,7 +104,7 @@ const ContactIcon = styled.div`
   transition: background-color 0.3s;
 
   &:hover {
-    background-color: #2e7d32;
+    background-color: white;// #2e7d32
   }
 `;
 
@@ -189,10 +190,10 @@ const Content: React.FC = () => {
       {/* Phần chứa các icon liên hệ */}
       <ContactWrapper>
         <ContactIcon>
-          <PhoneOutlined />
+          <PhoneOutlined style={{color:' #2e7d32'}}/>
         </ContactIcon>
         <ContactIcon>
-          <MessageOutlined />
+          <MessageOutlined style={{color:' #2e7d32'}}/>
         </ContactIcon>
       </ContactWrapper>
     </ContentWrapper>
