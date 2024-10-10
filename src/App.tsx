@@ -24,6 +24,11 @@ import Sidebar from './components/Sidebar/Sidebar';
 import Explore from './page/Explore/Explore';
 import Home from './page/Home/Home';
 import TabMenu from './page/TabMenu/TabMenu';
+import AboutPage from './page/AboutPage/AboutPage';
+import TicketPage from './page/TicketPage/TicketPage';
+import HistoryPage from './page/HistoryPage/HistoryPage';
+
+
 
 const { Sider, Content } = Layout;
 
@@ -40,6 +45,9 @@ const App: React.FC = () => {
               <Route path="/" element={<Home />} />
               <Route path="/explore" element={<Explore />} />
               <Route path="/TabMenu" element={<TabMenu />} />
+              <Route path="/AboutPage" element={<AboutPage />} />
+              <Route path="/TicketPage" element={<TicketPage />} />
+              <Route path="/HistoryPage" element={<HistoryPage />} />
               {/* Các route khác */}
             </Routes>
           </Content>

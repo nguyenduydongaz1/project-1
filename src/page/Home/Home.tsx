@@ -1,9 +1,10 @@
-import React from 'react';
-import Content from '../../components/Content/Content';
+import React from 'react'
+import Content from '../../components/Content/Content'
 
-const Home: React.FC = () => {
-
-  return <Content/>;
-};
-
-export default Home;
+export default function Home() {
+  return (
+    <div>
+      <Content/>
+    </div>
+  )
+}

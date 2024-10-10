@@ -1,129 +1,170 @@
-import React from 'react';
+// import React from 'react';
+// import { Menu } from 'antd';
+// import { MenuOutlined, RightOutlined, CloseOutlined, FacebookFilled, InstagramFilled, YoutubeFilled } from '@ant-design/icons';
+// import logo from '../../assets/images/logo.png'
+// import { Link, useLocation, useNavigate } from 'react-router-dom';
+// import type { MenuProps } from 'antd';
+// import { SidebarContainer, MenuIconWrapper, LogoWrapper, Logo, SocialIcons, StyledMenu } from './SidebarStyles'
+
+
+// // type MenuItem = Required<MenuProps>['items'][number];
+
+// // const items: MenuItem[] = [
+// //   {
+// //     key: 'sub1',
+// //     label: <Link to = "/" >TRANG CHỦ</Link>,
+// //   },
+// //    {
+// //     key: 'sub1',
+// //     label: <Link to = "/explore" >KHÁM PHÁ</Link>,
+// //   },
+// //   {
+// //     key: 'sub4',
+// //     label: 'Navigation Three',
+// //     children: [
+// //       { key: '1', label: 'Lịch sử hình thành' },
+// //       { key: '2', label: 'Thành viên' },
+// //       { key: '3', label: 'Chính sách bảo mật' },
+// //     ],
+// //   },
+// //   {
+// //     key: 'sub5',
+// //     label: 'Navigation Three',
+// //     children: [
+// //       { key: '9', label: 'Option 9' },
+// //       { key: '10', label: 'Option 10' },
+// //       { key: '11', label: 'Option 11' },
+// //       { key: '12', label: 'Option 12' },
+// //     ],
+// //   },
+// // ];
+
+
+
+// const Sidebar: React.FC = () => {
+//   const navigate = useNavigate()
+//   const {pathname}  = useLocation()
+  
+//   const TabMenu = () => {
+//     navigate('/TabMenu')
+//   }
+ 
+//   return (
+//     <SidebarContainer>
+//       {/* Menu Icon */}
+//       <MenuIconWrapper>
+//        { pathname === '/TabMenu' ? <CloseOutlined onClick={TabMenu} style={{ fontSize: '28px', color: '#F06292' }}  /> : <MenuOutlined onClick={TabMenu} style={{ fontSize: '28px', color: '#F06292' }}  /> }
+//       </MenuIconWrapper>
+
+    
+//       {/* Menu các mục trong sidebar */}
+//       <StyledMenu mode="vertical" defaultSelectedKeys={['1']}>
+//         <Menu.Item key="1" style={{color:'white', fontWeight:'800', fontSize: '20px'}}><Link to="/">TRANG CHỦ</Link></Menu.Item>
+//         <Menu.Item key="2" style={{color:'white', fontWeight:'900', fontSize: '20px'}}><Link to="/explore">KHÁM PHÁ</Link></Menu.Item>
+//         <Menu.Item key="3" style={{color:'white', fontWeight:'900', fontSize: '20px'}}><Link to="AboutPage">GIỚI THIỆU</Link><RightOutlined  style={{margin:'60px', fontSize:'20px'}}/> </Menu.Item>
+//         <Menu.Item key="4" style={{color:'white', fontWeight:'900', fontSize: '20px'}}><Link to="TicketPage">GIÁ VÉ</Link><RightOutlined  style={{margin:'100px', fontSize:'20px'}}/> </Menu.Item>
+//         <Menu.Item key="5" style={{color:'white', fontWeight:'900', fontSize: '20px'}}>SỰ KIỆN</Menu.Item>
+//       </StyledMenu>
+
+//       {/* <Menu items = {items}/> */}
+
+//         {/* Logo */}
+//       <LogoWrapper>
+//         <Logo src={logo} alt="Đầm Sen Park" />
+//       </LogoWrapper>
+
+//       {/* Mạng xã hội */}
+//       <SocialIcons>
+//         <FacebookFilled />
+//         <InstagramFilled />
+//         <YoutubeFilled />
+//       </SocialIcons>
+//     </SidebarContainer>
+//   );
+// };
+
+// export default Sidebar;
+import React, { useState } from 'react';
 import { Menu } from 'antd';
-import { MenuOutlined, FacebookOutlined, InstagramOutlined, YoutubeOutlined } from '@ant-design/icons';
-import styled from 'styled-components';
-import logo from '../../assets/images/logo.png'
-import { Link, useNavigate } from 'react-router-dom';
-import TabMenu from '../../page/TabMenu/TabMenu';
-
-
-// Container cho sidebar
-const SidebarContainer = styled.div`
-  width: 256px;
-  background-color: rgba(37, 158, 88, 1);
-  height: 100vh;
-  position: fixed;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  font-family: 'Roboto', sans-serif; /* Thay đổi font chữ ở đây */
-`;
-
-// Menu style cho các mục trong sidebar
-const StyledMenu = styled(Menu)`
-  background-color: rgba(37, 158, 88, 1);
-  color: white;
-  border-right: none;
-  font-size: 18px;
-
-  & .ant-menu-item {
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: start;
-    position: relative;
-    font-family: 'Roboto', sans-serif; /* Thay đổi font chữ ở đây */
-    color: #ffffff; /* Màu font chữ */
-  }
-
-  & .ant-menu-item-selected {
-    background-color: rgba(37, 158, 88, 1) !important; /* Màu của mục được chọn */
-  }
-
-  & .ant-menu-item-selected::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 80%;
-    height: 4px;
-    background-color: rgba(1, 112, 61, 1); /* Màu của dấu gạch chân */
-  }
-
-    & .ant-menu-item:hover {
-    color: rgba(1, 112, 61, 1) !important; /* Màu nền khi hover */
-  }
-`;
-
-// Nút Menu Icon
-const MenuIconWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 80px;
-  background-color: white; /* Màu hồng cho icon */
-  border-radius: 50%;
-  margin: 10px auto;
-  width: 60px;
-  height: 60px;
-`;
-
-// Phần chứa các biểu tượng mạng xã hội
-const SocialIcons = styled.div`
-  display: flex;
-  justify-content: center;
-  padding: 60px;
-  color: white;
-
-  & > * {
-    margin: 0 15px;
-    font-size: 28px;
-  }
-`;
-
-const LogoWrapper = styled.div`
-  text-align: center;
-  margin: 20px 0;
-`;
-
-const Logo = styled.img`
-  width: 200px;
-  margin-bottom: -240px;
-`;
+import { MenuOutlined, CloseOutlined, FacebookFilled, InstagramFilled, YoutubeFilled } from '@ant-design/icons';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import logo from '../../assets/images/logo.png';
+import { SidebarContainer, MenuIconWrapper, LogoWrapper, Logo, SocialIcons, StyledMenu, StyledSubMenu } from './SidebarStyles';
 
 
 const Sidebar: React.FC = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+  const [openKeys, setOpenKeys] = useState<string[]>([]); // For controlling submenu state
+
   const TabMenu = () => {
-    navigate('/TabMenu')
-  }
+    navigate('/TabMenu');
+  };
+
+  // Handle submenu open state
+  const onOpenChange = (keys: string[]) => {
+    setOpenKeys(keys);
+  };
+
   return (
     <SidebarContainer>
       {/* Menu Icon */}
       <MenuIconWrapper>
-        <MenuOutlined onClick={TabMenu} style={{ fontSize: '28px', color: '#F06292' }}  />
+        {pathname === '/TabMenu' ? (
+          <CloseOutlined onClick={TabMenu} style={{ fontSize: '28px', color: '#F06292' }} />
+        ) : (
+          <MenuOutlined onClick={TabMenu} style={{ fontSize: '28px', color: '#F06292' }} />
+        )}
       </MenuIconWrapper>
 
-    
-      {/* Menu các mục trong sidebar */}
-      <StyledMenu mode="vertical" defaultSelectedKeys={['1']} style={{marginTop:"-160px"}}>
-        <Menu.Item key="1" style={{color:'white', fontWeight:'800', fontSize: '20px'}}><Link to="/">TRANG CHỦ</Link></Menu.Item>
-        <Menu.Item key="2" style={{color:'white', fontWeight:'900', fontSize: '20px'}}><Link to="/explore">KHÁM PHÁ</Link></Menu.Item>
-        <Menu.Item key="3" style={{color:'white', fontWeight:'900', fontSize: '20px'}}>GIỚI THIỆU</Menu.Item>
-        <Menu.Item key="4" style={{color:'white', fontWeight:'900', fontSize: '20px'}}>GIÁ VÉ</Menu.Item>
-        <Menu.Item key="5" style={{color:'white', fontWeight:'900', fontSize: '20px'}}>SỰ KIỆN</Menu.Item>
+      {/* Menu */}
+      <StyledMenu mode="vertical" openKeys={openKeys} onOpenChange={onOpenChange}>
+        <Menu.Item key="1" style={{ color: 'white', fontWeight: '800', fontSize: '20px' }}>
+          <Link to="/">TRANG CHỦ</Link>
+        </Menu.Item>
+        <Menu.Item key="2" style={{ color: 'white', fontWeight: '900', fontSize: '20px' }}>
+          <Link to="/explore">KHÁM PHÁ</Link>
+        </Menu.Item>
+
+        {/* Submenu for "GIỚI THIỆU" */}
+        <StyledSubMenu
+          key="sub3"
+          title={
+            <span style={{ color: 'white', fontWeight:'700' ,fontSize: '20px' }}>
+             <Link style={{color:'white',}} to="/AboutPage">GIỚI THIỆU</Link>
+            </span>
+          }
+        >
+          <Menu.Item key="3-1">
+            <Link to="/HistoryPage">Lịch sử hình thành</Link>
+          </Menu.Item>
+          <Menu.Item key="3-2">
+            <Link to="/about/team">Thành viên</Link>
+          </Menu.Item>
+          <Menu.Item key="3-3">
+            <Link to="/about/privacy">Chính sách bảo mật</Link>
+          </Menu.Item>
+        </StyledSubMenu>
+
+        <Menu.Item key="4" style={{ color: 'white', fontWeight: '900', fontSize: '20px' }}>
+          <Link to="/TicketPage">GIÁ VÉ</Link>
+        </Menu.Item>
+
+        <Menu.Item key="5" style={{ color: 'white', fontWeight: '900', fontSize: '20px' }}>
+          SỰ KIỆN
+        </Menu.Item>
       </StyledMenu>
 
-        {/* Logo */}
+      {/* Logo */}
       <LogoWrapper>
         <Logo src={logo} alt="Đầm Sen Park" />
       </LogoWrapper>
 
-      {/* Mạng xã hội */}
+      {/* Social Media Icons */}
       <SocialIcons>
-        <FacebookOutlined />
-        <InstagramOutlined />
-        <YoutubeOutlined />
+        <FacebookFilled />
+        <InstagramFilled />
+        <YoutubeFilled />
       </SocialIcons>
     </SidebarContainer>
   );
